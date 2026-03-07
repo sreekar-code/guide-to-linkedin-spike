@@ -238,70 +238,6 @@ def parse_posts(response_text: str) -> list:
 
 
 # ---------------------------------------------------------------------------
-# Hook alternatives (Feature 4)
-# ---------------------------------------------------------------------------
-
-def generate_hook_alternatives(post_content: str) -> list:
-    """Ask Claude to rewrite the opening hook 3 ways. Returns list of 3 strings."""
-    first_line = post_content.splitlines()[0].strip()
-    prompt = (
-        f"Here is a LinkedIn post:\n\n{post_content}\n\n"
-        "Rewrite only the opening hook (the very first line) in 3 different ways. "
-        "Each hook should be counter-intuitive, specific, or thought-provoking — "
-        "and make the reader want to continue reading. Keep the same topic and idea. "
-        "Do not rewrite the rest of the post.\n\n"
-        "Output exactly this format:\n"
-        "HOOK 1: [hook]\n"
-        "HOOK 2: [hook]\n"
-        "HOOK 3: [hook]"
-    )
-    message = claude.messages.create(
-        model="claude-sonnet-4-20250514",
-        max_tokens=512,
-        messages=[{"role": "user", "content": prompt}],
-    )
-    raw = message.content[0].text.strip()
-    hooks = []
-    for line in raw.splitlines():
-        line = line.strip()
-        if line.upper().startswith("HOOK 1:"):
-            hooks.append(line[7:].strip())
-        elif line.upper().startswith("HOOK 2:"):
-            hooks.append(line[7:].strip())
-        elif line.upper().startswith("HOOK 3:"):
-            hooks.append(line[7:].strip())
-    # Fall back to original if parsing fails
-    while len(hooks) < 3:
-        hooks.append(first_line)
-    return hooks
-
-
-def pick_hook(post_content: str, post_number: int) -> str:
-    """Show hook options for a post and return the post with the chosen hook."""
-    first_line = post_content.splitlines()[0].strip()
-    rest = "\n".join(post_content.splitlines()[1:])
-
-    print(f"\n  Generating hook alternatives for Post {post_number}...")
-    hooks = generate_hook_alternatives(post_content)
-
-    print(f"\n  POST {post_number} — current hook:")
-    print(f"    0. {first_line}")
-    print(f"  Alternatives:")
-    for i, hook in enumerate(hooks, 1):
-        print(f"    {i}. {hook}")
-
-    while True:
-        choice = input(f"  Pick a hook for Post {post_number} (0=original, 1/2/3): ").strip()
-        if choice == "0":
-            return post_content
-        elif choice in ("1", "2", "3"):
-            chosen_hook = hooks[int(choice) - 1]
-            return (chosen_hook + "\n" + rest).strip()
-        else:
-            print("  Enter 0, 1, 2, or 3.")
-
-
-# ---------------------------------------------------------------------------
 # Write posts back to Notion
 # ---------------------------------------------------------------------------
 
@@ -384,30 +320,13 @@ def process_guide(guide: dict):
     for i, post in enumerate(posts, 1):
         print(f"\nPOST {i}:\n{post}\n---")
 
-    # Hook selection pass
-    print("\n" + "-" * 60)
-    print("HOOK SELECTION:")
-    print("For each post, pick the opening hook you want (or keep the original).")
-    print("-" * 60)
-    final_posts = []
-    for i, post in enumerate(posts, 1):
-        final_post = pick_hook(post, i)
-        final_posts.append(final_post)
-
-    # Final confirmation
-    print("\n" + "-" * 60)
-    print("FINAL POSTS (with chosen hooks):")
-    print("-" * 60)
-    for i, post in enumerate(final_posts, 1):
-        print(f"\nPOST {i}:\n{post}\n---")
-
     print()
     answer = input("Write these to Notion? (y/n): ").strip().lower()
     if answer != "y":
         print("  Skipped. Nothing written to Notion.")
         return
 
-    write_posts_to_notion(final_posts, guide_id, guide_title)
+    write_posts_to_notion(posts, guide_id, guide_title)
     mark_posts_generated(guide_id)
     print(f"  Done with: {guide_title}")
 
