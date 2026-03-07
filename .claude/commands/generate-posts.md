@@ -162,8 +162,8 @@ Next: Review in Notion → mark Finalized → publish on LinkedIn → log analyt
 1. Show the user the score summary and top issues
 2. Rewrite all posts that have any score below 8, using the coordinator's feedback:
    - Address every documented failure point
-   - Do not change posts that fully passed (all 5 scores >= 8) unless the copy editor found rule violations
-3. Re-run ALL 5 personas on the revised posts (not just the ones that were rewritten)
+   - Do not change posts that fully passed (all 5 scores >= 8)
+3. Re-run ALL 5 personas on the rewritten posts only — skip posts that fully passed in the previous round
 4. Re-run coordinator
 5. Repeat gate decision
 
@@ -196,7 +196,8 @@ Wait for the user's response before doing anything.
 
 ## Important Rules
 
-- ALL 5 personas must run on every iteration, even if only some posts failed
+- In round 1, ALL 5 personas review ALL posts
+- In subsequent rounds, only review posts that have not yet fully passed (any score < 8 in the previous round) — posts that fully passed are locked and skipped
 - Never write to Notion until the gate is passed (or the user explicitly chooses to write as-is)
 - Never overwrite posts that already exist in Notion for this guide
 - A single banned word or em dash from `instructions.txt` is enough to score below 8 on copy editing
