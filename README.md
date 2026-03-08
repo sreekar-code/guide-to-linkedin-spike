@@ -16,7 +16,7 @@ That's it. The pipeline scans everything pending and handles it in one shot.
 
 1. **Applies edits** — finds all `Generated` posts with unresolved inline comments, applies the changes, replies "Applied." to each thread
 2. **Generates image prompts** — finds all `Approved` posts, generates a tailored image prompt for each, sets status to `Ready to publish`
-3. **Generates new posts** — finds all guides with `Posts Generated = unchecked`, runs the full generation pipeline
+3. **Generates new posts** — finds all guides with `Posts Generated = unchecked`, runs the full generation pipeline for each
 
 Individual commands are also available for targeted runs: `/apply-edits`, `/generate-image-prompts`, `/generate-posts`.
 
@@ -25,6 +25,15 @@ Individual commands are also available for targeted runs: `/apply-edits`, `/gene
 ```
 Generated → (review + add comments in Notion) → /run applies edits → (change to Approved) → /run generates image prompt → Ready to publish → (publish on LinkedIn) → Published → (log analytics)
 ```
+
+## Review system
+
+New posts go through a 5-persona review board (single Haiku agent) before being written to Notion.
+
+- **Gate:** overall average ≥ 7.5, every individual score ≥ 7
+- **Hard rules** (auto-fail): em dashes, banned words
+- **Soft rules** (proportional deductions): word count (90–160 words), comma count, hedging, short fragments
+- Max 2 auto-rewrite rounds — pipeline pauses and asks if still failing after round 2
 
 ## Files
 

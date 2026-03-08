@@ -79,6 +79,19 @@ The pipeline auto-detects unresolved comment threads (threads with no "Applied."
 
 ---
 
+## Review system
+
+Posts go through a 5-persona review board before being written to Notion. One Haiku agent runs all 5 personas in sequence and returns scores in a single response.
+
+**Gate:** Overall average >= 7.5 AND every individual persona score >= 7
+
+**Hard rules** (automatic score below 7): em dashes, banned words
+**Soft rules** (proportional deductions, not auto-fails): word count (90–160), comma count, hedging presence, standalone sentences of 3 words or fewer
+
+Maximum 2 auto-rewrite rounds before the pipeline pauses and asks the user how to proceed.
+
+---
+
 ## Key files
 
 | File | Purpose |
@@ -88,7 +101,7 @@ The pipeline auto-detects unresolved comment threads (threads with no "Applied."
 | `image-guide.md` | Visual style guide for image prompt generation — color palette, rules, 5 reference examples |
 | `review-logs/` | Per-guide review logs — one `.md` file per guide, written after each pipeline run |
 | `.claude/commands/run.md` | Master pipeline command |
-| `.claude/commands/generate-posts.md` | Full post generation pipeline with 5-persona review board |
+| `.claude/commands/generate-posts.md` | Full post generation pipeline with 5-persona review board (single Haiku agent) |
 | `.claude/commands/apply-edits.md` | Comment-based edit application |
 | `.claude/commands/generate-image-prompts.md` | Image prompt generation for Approved posts |
 
@@ -101,3 +114,5 @@ The pipeline auto-detects unresolved comment threads (threads with no "Applied."
 - Only act on comment threads with no "Applied." reply — skip already-handled threads
 - Never write posts to Notion until the review gate is passed (or the user explicitly chooses to write as-is)
 - Read `instructions.txt`, `opinions.md`, and `image-guide.md` fresh on every run — never rely on cached memory
+- Linked Guide relation value format: JSON array of page URLs — `["https://www.notion.so/{page-id-no-dashes}"]`
+- Haiku agent miscounts word length by ~20–30% — verify word count manually if Copy Editor flags an out-of-range count on a post that looks normal length
