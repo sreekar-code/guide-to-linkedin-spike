@@ -164,9 +164,15 @@ Next: Review in Notion → mark Finalized → publish on LinkedIn → log analyt
 2. Rewrite all posts that have any score below 8, using the coordinator's feedback:
    - Address every documented failure point
    - Do not change posts that fully passed (all 5 scores >= 8)
-3. Re-run ALL 5 personas on the rewritten posts only — skip posts that fully passed in the previous round
-4. Re-run coordinator
-5. Repeat gate decision
+3. For each rewritten post, classify the fix:
+   - **Mechanical fix** — single word/phrase swap, banned word removal, comma fix, word count trim, hedging variation. The meaning, structure, hook, and tone are unchanged.
+   - **Substantive fix** — hook rewrite, structural change, tone or voice adjustment, meaning change, or any fix that required adding/removing more than a sentence.
+4. Re-run personas based on fix type:
+   - Mechanical fix → re-run **copy editor only**
+   - Substantive fix → re-run **all 5 personas**
+   - Posts that fully passed in a previous round → skip entirely
+5. Re-run coordinator
+6. Repeat gate decision
 
 ---
 
