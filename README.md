@@ -33,7 +33,6 @@ Generated → (review + add comments in Notion) → /run applies edits → (chan
 | `instructions.txt` | Writing brief: tone, structure, rules, banned words, reference posts. Edit this to change how posts are written. |
 | `opinions.md` | Growing list of sharp opinions extracted from processed guides. Feeds into future post generation. |
 | `image-guide.md` | Visual style guide for image prompts: color palette, rules, 5 reference examples, prompt template. |
-| `review-logs/` | Per-guide review logs. One file per guide, written automatically after each pipeline run. |
 | `AGENTS.md` | Session-start context for Claude: DB IDs, schema, workflow, important behaviours. |
 | `.claude/commands/` | All pipeline command definitions. |
 

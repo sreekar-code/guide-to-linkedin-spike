@@ -134,7 +134,7 @@ A reference for generating minimal illustrations for Spike's LinkedIn posts. Use
 Use this as a starting structure for new prompts:
 
 ```
-A minimal flat illustration of [CORE VISUAL CONCEPT]. [DESCRIBE KEY ELEMENTS AND THEIR RELATIONSHIP]. [NOTE ANY LABELS OR TEXT IN THE IMAGE]. No human figures. Clean white background. Muted tones — slate blue, amber, soft off-white. Simple geometric shapes. Editorial illustration style. At the top, a bold clean heading that reads: "[HEADING TEXT]"
+A minimal flat illustration of [CORE VISUAL CONCEPT]. [DESCRIBE KEY ELEMENTS AND THEIR RELATIONSHIP]. [NOTE ANY LABELS OR TEXT IN THE IMAGE]. [Only if the post is explicitly about burnout or people-state contrast: use minimal stick figures — otherwise no human figures.] Clean white background. Muted tones — slate blue (#4A6A8A), amber (#E8A830), soft off-white (#F5F4F0), light grey (#C8CDD4). Simple geometric shapes. No gradients, shadows, or 3D effects. Editorial illustration style. At the top, a bold clean heading in dark slate blue or charcoal that reads: "[HEADING TEXT]"
 ```
 
 ---

@@ -86,7 +86,6 @@ The pipeline auto-detects unresolved comment threads (threads with no "Applied."
 | `instructions.txt` | Full writing brief: audience, tone, structure, rules, banned words, reference posts |
 | `opinions.md` | Sharp opinions extracted from processed guides — used when generating new posts |
 | `image-guide.md` | Visual style guide for image prompt generation — color palette, rules, 5 reference examples |
-| `review-logs/` | Per-guide review logs — one `.md` file per guide, written after each pipeline run |
 | `.claude/commands/run.md` | Master pipeline command |
 | `.claude/commands/generate-posts.md` | Post generation pipeline — generates and writes directly to Notion |
 | `.claude/commands/apply-edits.md` | Comment-based edit application |
@@ -101,4 +100,3 @@ The pipeline auto-detects unresolved comment threads (threads with no "Applied."
 - Only act on comment threads with no "Applied." reply — skip already-handled threads
 - Read `instructions.txt`, `opinions.md`, and `image-guide.md` fresh on every run — never rely on cached memory
 - Linked Guide relation value format: JSON array of page URLs — `["https://www.notion.so/{page-id-no-dashes}"]`
-- Haiku agent miscounts word length by ~20–30% — verify word count manually if Copy Editor flags an out-of-range count on a post that looks normal length

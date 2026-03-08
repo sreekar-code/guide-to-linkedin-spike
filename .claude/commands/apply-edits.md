@@ -17,7 +17,7 @@ See `AGENTS.md` for database IDs and schema details.
 
 ### Step 1: Find Posts With Unresolved Comments
 
-1. Search the LinkedIn Posts DB to retrieve every post page. Do not rely on post IDs from session memory. For each post returned, fetch its page to read the `Status` property. Collect only posts where `Status = Generated`.
+1. Search the LinkedIn Posts DB to retrieve every post page. Do not rely on post IDs from session memory. If the search returns `has_more: true`, continue fetching with `next_cursor` until all pages are retrieved. For each post returned, fetch its page to read the `Status` property. Collect only posts where `Status = Generated`.
 2. For each Generated post, fetch comments using `get_comments` with `include_all_blocks: true`
 3. A post has **unresolved comments** if it has at least one comment thread where none of the replies contain "Applied."
 4. Collect only posts with unresolved comments

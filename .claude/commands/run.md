@@ -17,7 +17,7 @@ See `AGENTS.md` for database IDs and schema details.
 
 Query the Notion DBs in parallel and collect what's pending:
 
-1. **All posts in the LinkedIn Posts DB** — Search the LinkedIn Posts DB to retrieve every post page. Do not rely on post IDs from session memory. For each post returned, fetch its page to read the `Status` property, then:
+1. **All posts in the LinkedIn Posts DB** — Search the LinkedIn Posts DB to retrieve every post page. Do not rely on post IDs from session memory. If the search returns `has_more: true`, continue fetching with `next_cursor` until all pages are retrieved. For each post returned, fetch its page to read the `Status` property, then:
    - `Status = Generated`: fetch its comments using `get_comments` with `include_all_blocks: true`, and check for threads with no "Applied." reply. If at least one unresolved thread exists, add to the "unresolved comments" list.
    - `Status = Approved`: add to the "approved for image prompts" list.
    - Any other status (`Ready to publish`, `Published`, etc.): skip.

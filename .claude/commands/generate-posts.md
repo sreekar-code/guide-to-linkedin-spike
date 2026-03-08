@@ -31,9 +31,9 @@ If `[guide-title]` was passed as an argument, process only that guide. Otherwise
 For each guide:
 
 1. Fetch the full guide page content from Notion, including the `URL` field (the public spike.sh guide URL — used in the P.S. of each post)
-2. **Check that the URL field is not empty.** If it is, stop processing this guide and tell the user:
+2. **Check that the URL field is not empty and starts with `http://` or `https://`.** If it is empty or does not start with a valid scheme, stop processing this guide and tell the user:
    ```
-   Guide "[title]" has no URL set in the Guides DB. Posts would have a broken P.S. link.
+   Guide "[title]" has no valid URL set in the Guides DB. Posts would have a broken P.S. link.
    Add the URL to the Guides DB and re-run to process this guide.
    ```
    Do not mark it as Posts Generated. Move to the next guide if there are others.
@@ -65,16 +65,18 @@ Label each post: `Post 1`, `Post 2`, etc.
    Posts for "[Guide Title]" already exist in Notion. Skipping to avoid duplicates.
    If you want to regenerate, manually delete the existing posts and uncheck Posts Generated in the Guides DB.
    ```
-2. Write all posts to the LinkedIn Posts DB in Notion:
+2. Write all posts to the LinkedIn Posts DB in Notion, one at a time:
    - Title: `{Guide Title} — Post {N}`
    - Post Content: the full post text
    - Status: `Generated`
    - Linked Guide: `["https://www.notion.so/{guide-page-id-no-dashes}"]`
-3. Mark the guide `Posts Generated = true` in Notion
+
+   If any individual post write fails, stop immediately. Do NOT mark the guide as Posts Generated. Tell the user which posts were written successfully and which failed, so they can clean up manually before re-running.
+3. Only after all posts are written successfully: Mark the guide `Posts Generated = true` in Notion
 4. Extract 2-4 sharp opinions from this guide and append them to `opinions.md`:
    - Each opinion is one plain sentence stating a belief the guide supports — not a summary, but a point of view
    - Add a heading with the guide title, then list the opinions as bullets
-   - Do not duplicate opinions already in the file
+   - Do not duplicate opinions already in the file. An opinion is a duplicate if it makes the same underlying claim, even in different words — paraphrases count as duplicates
 5. Tell the user:
 
 ```

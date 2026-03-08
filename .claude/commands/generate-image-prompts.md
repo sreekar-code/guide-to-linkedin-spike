@@ -17,7 +17,7 @@ See `AGENTS.md` for database IDs and schema details.
 
 ### Step 1: Find Posts Ready for Image Prompts
 
-Search the LinkedIn Posts DB to retrieve every post page. Do not rely on post IDs from session memory. For each post returned, fetch its page to read the `Status` property. Collect only posts where `Status = Approved`.
+Search the LinkedIn Posts DB to retrieve every post page. Do not rely on post IDs from session memory. If the search returns `has_more: true`, continue fetching with `next_cursor` until all pages are retrieved. For each post returned, fetch its page to read the `Status` property. Collect only posts where `Status = Approved`.
 
 If none found, tell the user: "No posts currently marked 'Approved'." and stop.
 
