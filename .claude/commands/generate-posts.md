@@ -64,9 +64,10 @@ Launch ALL 5 persona agents **in parallel** using the Agent tool. Each persona r
 
 1. **persona-target-reader**
    Reviews from the perspective of Persona 1: Head of Engineering at a 20-60 person SaaS company. Still technical, ships weekly, finds PagerDuty heavy. Ask: Does this speak their language? Would they stop scrolling? Does it respect how modern teams actually work? Score each post on relevance, specificity, and resonance.
+   Also check: does the post orient the reader to the specific concept before building on it? The reader knows the incident management space but may not have a mental model for this particular nuance or term. If the post uses a specific concept or term without a brief plain-language anchor, score it below 8.
 
 2. **persona-hook-editor**
-   Reviews opening lines only. Ask: Is the first sentence counter-intuitive or thought-provoking? Does it earn the next sentence without being clickbait? Would someone actively on LinkedIn pause on this? Score each hook on surprise value, clarity, and pull.
+   Reviews opening lines only. Assume the reader is scrolling absent-mindedly — half-present, not actively looking for this content. The hook must earn a full stop from someone in that state. Ask: Does the first sentence create a feeling (curiosity, recognition, mild discomfort) before it creates understanding? Does it lead with tension rather than the concept? A hook that only lands for someone already interested in the topic is not strong enough. Score each hook on scroll-stopping power, surprise value, and pull.
 
 3. **persona-spike-voice**
    Reviews for brand fit. Spike has opinions — alert noise is a design problem, burnout is a systems problem, enterprise tools are over-engineered. Ask: Does the post reflect a real point of view, or does it just inform neutrally? Is it opinionated without being preachy? Does it sound like an engineering team talking to peers, not a marketing team talking to customers?

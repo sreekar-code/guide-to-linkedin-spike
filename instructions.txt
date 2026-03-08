@@ -29,6 +29,16 @@ When an idea from the guide connects to one of these beliefs, lean into it. A po
 
 ---
 
+LINKEDIN VS GUIDE WRITING
+
+Guides are found through search or AI — the reader already has intent and some context. LinkedIn is different. The reader is scrolling, half-present, and came across the post without looking for it.
+
+The audience is in the incident management, on-call, or reliability space. But they may not be familiar with the specific concept the post is about. Don't assume they already have a mental model for the particular nuance or terminology you're using. If the post is built around a specific concept or term (L1/L2/L3 escalation levels, MTTA, handoff windows, etc.), give the reader one plain sentence to understand what it is before you build on it. One sentence is enough — don't over-explain.
+
+Hook quality for scrollers: The first sentence must work on someone who is half-paying attention. It should create a feeling — curiosity, recognition, mild discomfort — before it creates understanding. Don't lead with the concept. Lead with the tension.
+
+---
+
 PURPOSE
 
 Each post should extract one sharp idea from the guide. Go deeper on that one idea rather than broader. The reader should learn something real and specific, even if they never click the link. Extract as many posts as the guide genuinely supports. Stop when there are no more sharp ideas worth a standalone post.
