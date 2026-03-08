@@ -5,3 +5,10 @@ This file grows over time. Each guide processed by the pipeline contributes 2-4 
 Do not delete entries without a reason. If Spike's thinking on a topic has evolved, update the entry rather than removing it.
 
 ---
+
+## 5 Offbeat on-call rotations that work
+
+- Most teams inherit their on-call rotation length without ever deciding if it's actually right for them.
+- Incident volume, not calendar preference, should determine how long an on-call rotation runs.
+- System-specific rotations outperform unified ones when services are complex enough that no single person can respond well to everything.
+- Predictability in on-call scheduling reduces background anxiety as much as it reduces response time.

@@ -1,6 +1,6 @@
 ---
 name: generate-posts
-description: "Full LinkedIn post pipeline. Fetches unprocessed Spike guides from Notion, generates posts, runs 5 reviewer personas in parallel, rewrites if needed (max 2 iterations), writes passing posts to Notion. Gate: avg >= 8.5, all individual >= 8."
+description: "Full LinkedIn post pipeline. Fetches unprocessed Spike guides from Notion, generates posts, runs 5 reviewer personas via a single Haiku review agent, rewrites if needed (max 2 iterations), writes passing posts to Notion. Gate: avg >= 7.5, all individual >= 7."
 argument-hint: "[guide-title or leave blank for auto-detect]"
 ---
 
@@ -58,18 +58,20 @@ Label each post: `Post 1`, `Post 2`, etc.
 
 ---
 
-### Step 4: Run Review Board (5 Personas in Parallel)
+### Step 4: Run Review Board (Single Agent, 5 Personas)
 
-Launch ALL 5 persona agents **in parallel** using the Agent tool. Each persona receives:
+Launch **ONE** review agent using the Agent tool. Use **model: haiku**. This single agent runs all 5 personas in sequence and returns all scores in one response.
+
+The agent receives:
 - The full `instructions.txt`
 - All draft posts for this guide
-- The persona's specific review focus (below)
+- All 5 persona descriptions and instructions below
 
-**Personas:**
+**Personas (the single agent runs all 5 in sequence):**
 
 1. **persona-target-reader**
    Reviews from the perspective of Persona 1: Head of Engineering at a 20-60 person SaaS company. Still technical, ships weekly, finds PagerDuty heavy. Ask: Does this speak their language? Would they stop scrolling? Does it respect how modern teams actually work? Score each post on relevance, specificity, and resonance.
-   Also check: does the post orient the reader to the specific concept before building on it? The reader knows the incident management space but may not have a mental model for this particular nuance or term. If the post uses a specific concept or term without a brief plain-language anchor, score it below 8.
+   Also check: does the post orient the reader to the specific concept before building on it? The reader knows the incident management space but may not have a mental model for this particular nuance or term. If the post uses a specific concept or term without a brief plain-language anchor, score it below 7.
 
 2. **persona-hook-editor**
    Reviews opening lines only. Assume the reader is scrolling absent-mindedly — half-present, not actively looking for this content. The hook must earn a full stop from someone in that state. Ask: Does the first sentence create a feeling (curiosity, recognition, mild discomfort) before it creates understanding? Does it lead with tension rather than the concept? A hook that only lands for someone already interested in the topic is not strong enough. Score each hook on scroll-stopping power, surprise value, and pull.
@@ -79,17 +81,18 @@ Launch ALL 5 persona agents **in parallel** using the Agent tool. Each persona r
 
 4. **persona-copy-editor**
    Reviews strictly against the rules in `instructions.txt`. Check every post for:
-   - Em dashes (none allowed)
-   - Banned words: ensure, enhance, leverage, utilize, "for example", "imagine", "tends", draining, relentless
-   - Comma rule: no more than one comma per sentence
-   - Word count: 100-150 words in body (excluding P.S.)
+   - Em dashes (none allowed) — automatic score below 7 if present
+   - Banned words: ensure, enhance, leverage, utilize, "for example", "imagine", "tends", draining, relentless — automatic score below 7 if present
+   - No standalone sentences of 3 words or fewer — fragments read as choppy
+   - Comma rule: prefer no more than one comma per sentence — flag repeated violations but a single exception is not an automatic fail
+   - Word count: 90-160 words in body (excluding P.S.) — flag if clearly outside range
    - No bold inside the post body
    - 3-5 relevant hashtags present at end of post (after P.S.)
    - No instructional language ("Start with X" instead of "X is a good place to start")
-   - UK-style hedging language present and varied
+   - UK-style hedging language present (at least one phrase per post is sufficient)
    - No excessive -ing words
    - "incident" not "alert" — never use "alert" to describe an incident
-   Score based on rules compliance. A single em dash or banned word is an automatic score below 8.
+   Score based on rules compliance. Only em dashes and banned words are automatic score-below-7 triggers. All other rule violations should reduce the score proportionally based on how many violations exist and how much they hurt the post.
 
 5. **persona-engagement-predictor**
    Reviews for LinkedIn engagement potential. Every post must land on one of three feelings:
@@ -107,7 +110,7 @@ After all 5 personas complete:
 1. Collect all scores and feedback
 2. Calculate per-post aggregate scores (average across 5 personas)
 3. Calculate overall round average across all posts
-4. For EVERY score below 8: document what specifically failed and exactly what needs to change
+4. For EVERY score below 7: document what specifically failed and exactly what needs to change
 5. Identify the top 3 most common issues across posts and personas
 
 Display a score summary:
@@ -129,7 +132,7 @@ Post 2:
 ...
 
 Overall Average: X.X/10
-Gate: avg >= 8.5, all individual >= 8
+Gate: avg >= 7.5, all individual >= 7
 Result: PASS / FAIL
 ```
 
@@ -137,13 +140,13 @@ Result: PASS / FAIL
 
 ### Step 6: Gate Decision
 
-**Gate: Overall average >= 8.5 AND every individual persona score >= 8 across all posts**
+**Gate: Overall average >= 7.5 AND every individual persona score >= 7 across all posts**
 
 ---
 
 #### If PASS:
 
-1. Before writing, query the LinkedIn Posts DB for any existing posts where `Linked Guide = this guide`. If any exist, stop and warn the user:
+1. Before writing, search the LinkedIn Posts DB for any existing posts whose title starts with `{Guide Title} — Post`. If any exist, stop and warn the user:
    ```
    Posts for "[Guide Title]" already exist in Notion. Skipping to avoid duplicates.
    If you want to regenerate, manually delete the existing posts and uncheck Posts Generated in the Guides DB.
@@ -179,9 +182,9 @@ Next: Review in Notion → publish on LinkedIn → mark Published → log analyt
 #### If FAIL and iterations < 2:
 
 1. Show the user the score summary and top issues
-2. Rewrite all posts that have any score below 8, using the coordinator's feedback:
+2. Rewrite all posts that have any score below 7, using the coordinator's feedback:
    - Address every documented failure point
-   - Do not change posts that fully passed (all 5 scores >= 8)
+   - Do not change posts that fully passed (all 5 scores >= 7)
 3. For each rewritten post, classify the fix:
    - **Mechanical fix** — single word/phrase swap, banned word removal, comma fix, word count trim, hedging variation. The meaning, structure, hook, and tone are unchanged.
    - **Substantive fix** — hook rewrite, structural change, tone or voice adjustment, meaning change, or any fix that required adding/removing more than a sentence.
@@ -220,7 +223,7 @@ Wait for the user's response, then:
 - **Option 1:** Apply the user's changes and re-run from Step 4. After this guide resolves, continue to any remaining guides in the queue.
 - **Option 2:** Re-run with the lowered threshold the user specifies. After this guide resolves, continue to any remaining guides.
 - **Option 3:** Write the review log (already written in step 1 above), write all posts to Notion as-is (Status = Generated), mark the guide Posts Generated = true, and continue to any remaining guides.
-- **Option 4:** Skip this guide without writing anything. Do not mark Posts Generated. Continue to any remaining guides.
+- **Option 4:** Skip this guide without writing anything. Do not mark Posts Generated. Update the Result line in the already-written review log to: `Skipped after pause. No posts written.` Continue to any remaining guides.
 
 ---
 
@@ -283,6 +286,7 @@ Posts rewritten: Post 1 (substantive — hook rewrite), Post 3 (mechanical — b
 - Passed in Round 1. N posts written to Notion.
 - Passed in Round 2. N posts written to Notion.
 - Did not pass after 2 rounds. Paused for user input.
+- Skipped after pause. No posts written.
 ```
 
 **Rules for the log:**
@@ -296,12 +300,13 @@ Posts rewritten: Post 1 (substantive — hook rewrite), Post 3 (mechanical — b
 ## Important Rules
 
 - In round 1, ALL 5 personas review ALL posts
-- In subsequent rounds, only review posts that have not yet fully passed (any score < 8 in the previous round) — posts that fully passed are locked and skipped
+- In subsequent rounds, only review posts that have not yet fully passed (any score < 7 in the previous round) — posts that fully passed are locked and skipped
 - Never write to Notion until the gate is passed (or the user explicitly chooses to write as-is)
 - Never overwrite posts that already exist in Notion for this guide
-- A single banned word or em dash from `instructions.txt` is enough to score below 8 on copy editing
+- A single banned word or em dash is enough to score below 7 on copy editing — these are hard rules
+- Comma violations, word count, and hedging are soft rules — flag them but don't auto-fail on a single infraction
 - The copy editor persona must check every rule in `instructions.txt` — not just the obvious ones
-- Every score below 8 MUST have a specific, documented reason and at least one concrete suggestion
-- Empty reasons for sub-8 scores are never acceptable
+- Every score below 7 MUST have a specific, documented reason and at least one concrete suggestion
+- Empty reasons for sub-7 scores are never acceptable
 - Re-reads `instructions.txt` fresh on every run — never rely on cached memory of its contents
 - Processes one guide at a time when multiple are unprocessed; does not batch them in parallel

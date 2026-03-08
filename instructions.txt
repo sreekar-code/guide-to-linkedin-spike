@@ -70,21 +70,21 @@ TONE AND WRITING STYLE
 
 - Warm, confident, and conversational. Feels like someone genuinely sharing something they figured out
 - Write as if Spike's team is talking directly to a fellow engineer or engineering manager
-- Plain language. Short sentences mixed with longer ones
+- Plain language. Short sentences mixed with longer ones. Avoid standalone sentences of 3 words or fewer — fragments read as choppy and unfinished
 - Avoid sounding like content marketing. The post should feel educational first
 - Use "incident" not "alert"
 - Avoid the words: ensure, enhance, leverage, utilize, and all their variations
 - No em dashes
-- No more than one comma per sentence
+- Prefer no more than one comma per sentence — occasional exceptions are fine but keep sentences clean
 - Avoid excessive -ing words
 - Avoid instructional language. Not "Start with a 2-day rotation" but "A 2-day rotation is a good place to start"
-- Use UK-style softer tone with hedging language like: probably, usually, often helps, consider, most teams prefer, many teams prefer, you'll find suggestions on, it can be helpful, good luck, go ahead and try it out, usually works best, it can be useful to. Vary these phrases — don't repeat the same one multiple times in one post.
+- Use UK-style softer tone with hedging language like: probably, usually, often helps, consider, most teams prefer, many teams prefer, you'll find suggestions on, it can be helpful, good luck, go ahead and try it out, usually works best, it can be useful to. At least one hedging phrase per post is sufficient.
 
 ---
 
 LENGTH
 
-Aim for 100-150 words in the body, not counting the P.S.
+Aim for 90-160 words in the body, not counting the P.S.
 
 ---
 
