@@ -32,8 +32,7 @@ If `[guide-title]` was passed as an argument, process only that guide. Otherwise
 For each guide:
 
 1. Fetch the full guide page content from Notion
-2. Fetch the last 10 **Finalized** posts from the LinkedIn Posts DB as style reference (skip if none)
-3. Fetch the last 10 **Published** posts with Impressions data as analytics context (skip if none)
+2. Fetch the last 10 **Published** posts from the LinkedIn Posts DB — use as style reference and as analytics context (for posts that have Impressions data). Skip if none.
 4. Read `instructions.txt` — the full writing brief. Follow it exactly.
 5. Read `opinions.md` if it exists — a growing list of opinions extracted from previously processed guides. These supplement the brand anchors in `instructions.txt`. Note which opinions are most relevant to this guide's topic; use them when writing posts.
 
@@ -158,7 +157,7 @@ Review scores:
   ...
   Overall:    X.X/10  (Round {N})
 
-Next: Review in Notion → mark Finalized → publish on LinkedIn → log analytics.
+Next: Review in Notion → publish on LinkedIn → mark Published → log analytics.
 ```
 
 ---
