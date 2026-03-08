@@ -26,15 +26,6 @@ Individual commands are also available for targeted runs: `/apply-edits`, `/gene
 Generated → (review + add comments in Notion) → /run applies edits → (change to Approved) → /run generates image prompt → Ready to publish → (publish on LinkedIn) → Published → (log analytics)
 ```
 
-## Review system
-
-New posts go through a 5-persona review board (single Haiku agent) before being written to Notion.
-
-- **Gate:** overall average ≥ 7.5, every individual score ≥ 7
-- **Hard rules** (auto-fail): em dashes, banned words
-- **Soft rules** (proportional deductions): word count (90–160 words), comma count, hedging, short fragments
-- Max 2 auto-rewrite rounds — pipeline pauses and asks if still failing after round 2
-
 ## Files
 
 | File | Purpose |

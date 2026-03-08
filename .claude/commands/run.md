@@ -18,7 +18,7 @@ See `AGENTS.md` for database IDs and schema details.
 Query the Notion DBs in parallel and collect what's pending:
 
 1. **All posts in the LinkedIn Posts DB** — Search the LinkedIn Posts DB to retrieve every post page. Do not rely on post IDs from session memory. For each post returned, fetch its page to read the `Status` property, then:
-   - `Status = Generated`: fetch its comments and check for threads with no "Applied." reply. If at least one unresolved thread exists, add to the "unresolved comments" list.
+   - `Status = Generated`: fetch its comments using `get_comments` with `include_all_blocks: true`, and check for threads with no "Applied." reply. If at least one unresolved thread exists, add to the "unresolved comments" list.
    - `Status = Approved`: add to the "approved for image prompts" list.
    - Any other status (`Ready to publish`, `Published`, etc.): skip.
 2. **Unprocessed guides** — Guides DB, `Posts Generated = unchecked`
@@ -79,16 +79,14 @@ If there are unprocessed guides, process them now — one at a time, sequentiall
 
 Follow the full logic in `.claude/commands/generate-posts.md` exactly:
 - Gather context (guide content, URL, Published posts, instructions.txt, opinions.md)
-- Generate draft posts
-- Run the 5-persona review board
-- Apply rewrites if needed (max 2 rounds)
-- Write passing posts to Notion, mark guide done, append opinions to opinions.md
+- Generate posts
+- Write directly to Notion, mark guide done, append opinions to opinions.md
 
 ---
 
 ## Final Summary
 
-After all steps complete without any PAUSE:
+After all steps complete:
 
 ```
 Run complete
@@ -100,8 +98,6 @@ New posts written:    N post(s) across N guide(s)
 Nothing pending.
 ```
 
-If a PAUSE occurred during Step 4, do not show the Final Summary. The PAUSE message from generate-posts is the last output — wait for the user's response and let generate-posts handle what comes next (re-run, lower threshold, write as-is, or skip). Once resolved, continue to any remaining guides in the queue automatically.
-
 ---
 
 ## Important Rules
@@ -109,5 +105,4 @@ If a PAUSE occurred during Step 4, do not show the Final Summary. The PAUSE mess
 - Always scan the full queue first before doing any work
 - Process in order: edits → image prompts → new guides. Do not reorder.
 - If a step has nothing to process, skip it silently and move to the next
-- If generate-posts hits a PAUSE state (2 failed rounds), stop and surface the PAUSE to the user. After the user responds and the guide is resolved, continue processing any remaining guides in the queue — do not require another `/run`
 - Individual commands (`/apply-edits`, `/generate-image-prompts`, `/generate-posts`) remain available for targeted runs

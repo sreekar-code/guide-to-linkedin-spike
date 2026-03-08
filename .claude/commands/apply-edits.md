@@ -17,8 +17,8 @@ See `AGENTS.md` for database IDs and schema details.
 
 ### Step 1: Find Posts With Unresolved Comments
 
-1. Query the LinkedIn Posts DB for all pages where `Status = Generated`
-2. For each post, fetch comments using `get_comments` with `include_all_blocks: true`
+1. Search the LinkedIn Posts DB to retrieve every post page. Do not rely on post IDs from session memory. For each post returned, fetch its page to read the `Status` property. Collect only posts where `Status = Generated`.
+2. For each Generated post, fetch comments using `get_comments` with `include_all_blocks: true`
 3. A post has **unresolved comments** if it has at least one comment thread where none of the replies contain "Applied."
 4. Collect only posts with unresolved comments
 
@@ -51,11 +51,11 @@ For each post with unresolved comments:
   - No em dashes
   - No banned words (ensure, enhance, leverage, utilize, "for example", "imagine", "tends", draining, relentless)
   - No more than one comma per sentence
-  - 100-150 words in body (excluding P.S.)
+  - 90-160 words in body (excluding P.S.)
   - No bold inside the post body
   - 3-5 relevant hashtags at end (after P.S.)
   - No instructional language
-  - UK-style hedging language present and varied
+  - UK-style hedging language present (at least one phrase per post is sufficient)
   - No excessive -ing words
   - "incident" not "alert" — never use "alert" to describe an incident
 
