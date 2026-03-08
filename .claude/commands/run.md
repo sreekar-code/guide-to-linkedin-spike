@@ -19,7 +19,7 @@ Query the Notion DBs in parallel and collect what's pending:
 
 1. **Posts needing edits** — LinkedIn Posts DB, `Status = Need edits`
 2. **Posts needing image prompts** — LinkedIn Posts DB, `Status = Generate image prompts`
-3. **Unprocessed guides** — Guides DB, `Status = Published` AND `Posts Generated = unchecked`
+3. **Unprocessed guides** — Guides DB, `Posts Generated = unchecked`
 
 Report the queue to the user:
 

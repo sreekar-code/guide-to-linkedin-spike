@@ -18,7 +18,6 @@ See `AGENTS.md` for database IDs and schema details.
 ### Step 1: Fetch Unprocessed Guides
 
 Query the Guides DB for pages where:
-- `Status = Published`
 - `Posts Generated = unchecked`
 
 If no guides are found, tell the user and stop.
