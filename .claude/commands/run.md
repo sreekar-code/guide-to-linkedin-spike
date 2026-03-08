@@ -86,7 +86,7 @@ Follow the full logic in `.claude/commands/generate-posts.md` exactly:
 
 ## Final Summary
 
-After all steps complete:
+After all steps complete without any PAUSE:
 
 ```
 Run complete
@@ -98,7 +98,7 @@ New posts written:    N post(s) across N guide(s)
 Nothing pending.
 ```
 
-If any step produced a PAUSE (e.g. generate-posts failed after 2 rounds), surface that to the user and wait for their response before continuing to the next step.
+If a PAUSE occurred during Step 4, do not show the Final Summary. The PAUSE message from generate-posts is the last output — wait for the user's response and let generate-posts handle what comes next (re-run, lower threshold, write as-is, or skip). Once resolved, continue to any remaining guides in the queue automatically.
 
 ---
 
@@ -107,5 +107,5 @@ If any step produced a PAUSE (e.g. generate-posts failed after 2 rounds), surfac
 - Always scan the full queue first before doing any work
 - Process in order: edits → image prompts → new guides. Do not reorder.
 - If a step has nothing to process, skip it silently and move to the next
-- If generate-posts hits a PAUSE state (2 failed rounds), stop and ask the user before continuing with remaining guides
+- If generate-posts hits a PAUSE state (2 failed rounds), stop and surface the PAUSE to the user. After the user responds and the guide is resolved, continue processing any remaining guides in the queue — do not require another `/run`
 - Individual commands (`/apply-edits`, `/generate-image-prompts`, `/generate-posts`) remain available for targeted runs

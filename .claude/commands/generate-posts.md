@@ -31,9 +31,15 @@ If `[guide-title]` was passed as an argument, process only that guide. Otherwise
 For each guide:
 
 1. Fetch the full guide page content from Notion, including the `URL` field (the public spike.sh guide URL — used in the P.S. of each post)
-2. Fetch the last 10 **Published** posts from the LinkedIn Posts DB — use as style reference and as analytics context (for posts that have Impressions data). Skip if none.
-3. Read `instructions.txt` — the full writing brief. Follow it exactly.
-4. Read `opinions.md` if it exists — a growing list of opinions extracted from previously processed guides. These supplement the brand anchors in `instructions.txt`. Note which opinions are most relevant to this guide's topic; use them when writing posts.
+2. **Check that the URL field is not empty.** If it is, stop processing this guide and tell the user:
+   ```
+   Guide "[title]" has no URL set in the Guides DB. Posts would have a broken P.S. link.
+   Add the URL to the Guides DB and re-run to process this guide.
+   ```
+   Do not mark it as Posts Generated. Move to the next guide if there are others.
+3. Fetch the last 10 **Published** posts from the LinkedIn Posts DB — use as style reference and as analytics context (for posts that have Impressions data). Skip if none.
+4. Read `instructions.txt` — the full writing brief. Follow it exactly.
+5. Read `opinions.md` — a growing list of opinions extracted from previously processed guides. These supplement the brand anchors in `instructions.txt`. Note which opinions are most relevant to this guide's topic; use them when writing posts.
 
 If the guide body is empty, skip it and move to the next one.
 
@@ -81,6 +87,8 @@ Launch ALL 5 persona agents **in parallel** using the Agent tool. Each persona r
    - 3-5 relevant hashtags present at end of post (after P.S.)
    - No instructional language ("Start with X" instead of "X is a good place to start")
    - UK-style hedging language present and varied
+   - No excessive -ing words
+   - "incident" not "alert" — never use "alert" to describe an incident
    Score based on rules compliance. A single em dash or banned word is an automatic score below 8.
 
 5. **persona-engagement-predictor**
@@ -135,18 +143,23 @@ Result: PASS / FAIL
 
 #### If PASS:
 
-1. Write all posts to the LinkedIn Posts DB in Notion:
+1. Before writing, query the LinkedIn Posts DB for any existing posts where `Linked Guide = this guide`. If any exist, stop and warn the user:
+   ```
+   Posts for "[Guide Title]" already exist in Notion. Skipping to avoid duplicates.
+   If you want to regenerate, manually delete the existing posts and uncheck Posts Generated in the Guides DB.
+   ```
+2. Write all posts to the LinkedIn Posts DB in Notion:
    - Title: `{Guide Title} — Post {N}`
    - Post Content: the approved post text
    - Status: `Generated`
    - Linked Guide: relation to the source guide page
-2. Mark the guide `Posts Generated = true` in Notion
-3. Extract 2-4 sharp opinions from this guide and append them to `opinions.md`:
+3. Mark the guide `Posts Generated = true` in Notion
+4. Extract 2-4 sharp opinions from this guide and append them to `opinions.md`:
    - Each opinion is one plain sentence stating a belief the guide supports — not a summary, but a point of view
    - Add a heading with the guide title, then list the opinions as bullets
    - Do not duplicate opinions already in the file
-4. Write the review log (see Step 7)
-5. Tell the user:
+5. Write the review log (see Step 7)
+6. Tell the user:
 
 ```
 Pipeline complete — [Guide Title]
@@ -203,7 +216,11 @@ How would you like to proceed?
 4. Skip this guide
 ```
 
-Wait for the user's response before doing anything.
+Wait for the user's response, then:
+- **Option 1:** Apply the user's changes and re-run from Step 4. After this guide resolves, continue to any remaining guides in the queue.
+- **Option 2:** Re-run with the lowered threshold the user specifies. After this guide resolves, continue to any remaining guides.
+- **Option 3:** Write the review log (already written in step 1 above), write all posts to Notion as-is (Status = Generated), mark the guide Posts Generated = true, and continue to any remaining guides.
+- **Option 4:** Skip this guide without writing anything. Do not mark Posts Generated. Continue to any remaining guides.
 
 ---
 
