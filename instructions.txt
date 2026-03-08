@@ -61,7 +61,7 @@ POST STRUCTURE
 - Hook: A counter-intuitive or thought-provoking opening line that earns the next sentence
 - Body: Expand on the one idea, explain why it matters, and reframe how the reader thinks about it
 - Closing statement: A single line that sticks
-- P.S.: A CTA linking to the full guide. Make it intriguing — not just "we wrote a guide" but a one-line reason why it's worth reading. Format: "P.S. We wrote a guide on [topic + why it's worth reading]. Link in the comments."
+- P.S.: A CTA linking to the full guide. Make it intriguing — not just "we wrote a guide" but a one-line reason why it's worth reading. Format: "P.S. We wrote a guide on [topic + why it's worth reading]. [guide URL]"
 Note: Some posts may not need a CTA. Use your judgment.
 
 ---
@@ -92,7 +92,7 @@ FORMAT
 
 - Use bullet points sparingly. Only when listing 3 or more parallel items that genuinely read better as a list
 - No bold text inside the post body
-- No hashtags
+- Add 3-5 relevant hashtags at the end of the post, after the P.S.
 
 ---
 
@@ -118,7 +118,11 @@ Avoid posts that:
 
 ---
 
-REFERENCE POST (use this as your style and structure benchmark for every post you write)
+REFERENCE POSTS (use these as your style and structure benchmark for every post you write)
+
+---
+
+Reference Post 1
 
 When someone starts escalating more incidents than usual, the instinct is to check in on them.
 
@@ -128,4 +132,60 @@ Burnout doesn't always look like exhaustion. Sometimes it just looks like more e
 
 If you're seeing this pattern consistently across multiple rotations, the rotation probably needs revisiting, not the person.
 
-P.S. We wrote a guide on spotting four early signs of on-call burnout, before they become a real problem. Link in the comments.
+P.S. We wrote a guide on spotting four early signs of on-call burnout, before they become a real problem. [guide URL]
+
+---
+
+Reference Post 2
+
+Being on-call for code you didn't write is a strange default.
+
+Standard rotations assign coverage by schedule. You're on-call because it's your week. Not because you know the system that broke.
+
+The follow-the-work model changes the premise. When someone ships a feature or pushes an update, they become the primary on-call responder for it. Just for a short window after the change goes out.
+
+The reason this works: incidents close to a deployment are almost always tied to it. The person who shipped knows what changed. They skip the investigation phase. The right person is already on the problem.
+
+The trade-off is workload. Engineers who ship often carry more on-call load. Worth tracking.
+
+But if every post-incident review at your team starts with "who touched this last?", the follow-the-work model answers that before the incident even starts.
+
+Context, not calendar. That's what fast incident response actually runs on.
+
+P.S. We wrote a guide covering various such on-call models. [guide URL]
+
+---
+
+Reference Post 3
+
+A weekly rotation isn't a safe default. For high-incident teams, it might be the fastest path to burnout.
+
+Most teams pick their rotation length based on what's easy to schedule. Weekly feels clean. Everyone knows when handoff happens.
+
+But rotation length should come from your incident volume, not your calendar preferences.
+
+The rule is simple: the higher the incident volume, the shorter the rotation should be.
+
+Here's why it matters. Handling incidents takes real mental energy. When someone is on-call for a full week and incidents fire multiple times a day, that energy runs out fast. They're not just fixing problems. They're staying alert and losing sleep. By day four, the quality of response drops.
+
+A two-day rotation keeps the window small. The person on-call stays sharp. The person coming off can actually recover before their next shift.
+
+Pick a rotation that matches your incident volume. You can always adjust later.
+
+P.S. We wrote a guide on how to choose the right on-call rotation. [guide URL]
+
+---
+
+Reference Post 4
+
+Your team probably doesn't need on-call coverage seven days a week.
+
+Most teams never question that assumption. On-call coverage is just continuous. And then people wonder why the on-call rotation feels like background anxiety that never fully switches off.
+
+The Quiet Day rotation does one simple thing. It designates one day a week where nobody is on-call. The team knows it in advance, so they can plan focused work around it without keeping one eye on their phone.
+
+You do need a plan for incidents that come in that day. Some teams pick their historically quietest day for it. Others accept a slightly slower response time during that window. Either way, the team gets something real: one predictable day where on-call responsibility fully lifts.
+
+Constant availability isn't the same as better coverage.
+
+P.S. We wrote a guide on 5 offbeat on-call rotations that work. [guide URL]

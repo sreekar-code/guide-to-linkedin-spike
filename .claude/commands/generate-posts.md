@@ -31,10 +31,10 @@ If `[guide-title]` was passed as an argument, process only that guide. Otherwise
 
 For each guide:
 
-1. Fetch the full guide page content from Notion
+1. Fetch the full guide page content from Notion, including the `URL` field (the public spike.sh guide URL — used in the P.S. of each post)
 2. Fetch the last 10 **Published** posts from the LinkedIn Posts DB — use as style reference and as analytics context (for posts that have Impressions data). Skip if none.
-4. Read `instructions.txt` — the full writing brief. Follow it exactly.
-5. Read `opinions.md` if it exists — a growing list of opinions extracted from previously processed guides. These supplement the brand anchors in `instructions.txt`. Note which opinions are most relevant to this guide's topic; use them when writing posts.
+3. Read `instructions.txt` — the full writing brief. Follow it exactly.
+4. Read `opinions.md` if it exists — a growing list of opinions extracted from previously processed guides. These supplement the brand anchors in `instructions.txt`. Note which opinions are most relevant to this guide's topic; use them when writing posts.
 
 If the guide body is empty, skip it and move to the next one.
 
@@ -78,7 +78,8 @@ Launch ALL 5 persona agents **in parallel** using the Agent tool. Each persona r
    - Banned words: ensure, enhance, leverage, utilize, "for example", "imagine", "tends", draining, relentless
    - Comma rule: no more than one comma per sentence
    - Word count: 100-150 words in body (excluding P.S.)
-   - No hashtags, no bold inside the post body
+   - No bold inside the post body
+   - 3-5 relevant hashtags present at end of post (after P.S.)
    - No instructional language ("Start with X" instead of "X is a good place to start")
    - UK-style hedging language present and varied
    Score based on rules compliance. A single em dash or banned word is an automatic score below 8.
