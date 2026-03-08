@@ -86,6 +86,7 @@ The pipeline auto-detects unresolved comment threads (threads with no "Applied."
 | `instructions.txt` | Full writing brief: audience, tone, structure, rules, banned words, reference posts |
 | `opinions.md` | Sharp opinions extracted from processed guides — used when generating new posts |
 | `image-guide.md` | Visual style guide for image prompt generation — color palette, rules, 5 reference examples |
+| `review-logs/` | Per-guide review logs — one `.md` file per guide, written after each pipeline run |
 | `.claude/commands/run.md` | Master pipeline command |
 | `.claude/commands/generate-posts.md` | Full post generation pipeline with 5-persona review board |
 | `.claude/commands/apply-edits.md` | Comment-based edit application |

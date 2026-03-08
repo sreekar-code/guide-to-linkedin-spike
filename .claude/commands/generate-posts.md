@@ -145,7 +145,8 @@ Result: PASS / FAIL
    - Each opinion is one plain sentence stating a belief the guide supports — not a summary, but a point of view
    - Add a heading with the guide title, then list the opinions as bullets
    - Do not duplicate opinions already in the file
-4. Tell the user:
+4. Write the review log (see Step 7)
+5. Tell the user:
 
 ```
 Pipeline complete — [Guide Title]
@@ -182,7 +183,8 @@ Next: Review in Notion → publish on LinkedIn → mark Published → log analyt
 
 #### If FAIL after 2 iterations (PAUSE):
 
-1. Show the user all review rounds:
+1. Write the review log (see Step 7)
+2. Show the user all review rounds:
 
 ```
 Pipeline did not pass after 2 rounds — [Guide Title]
@@ -202,6 +204,75 @@ How would you like to proceed?
 ```
 
 Wait for the user's response before doing anything.
+
+---
+
+### Step 7: Write Review Log
+
+After every guide — whether it passed, required rewrites, or hit PAUSE — write a review log to `review-logs/{kebab-case-guide-title}.md`.
+
+**Filename:** Convert the guide title to lowercase kebab-case. Example: `"Follow-the-sun and other on-call models"` → `follow-the-sun-and-other-on-call-models.md`
+
+**Format:**
+
+```markdown
+# [Guide Title]
+*Processed: [YYYY-MM-DD]*
+
+---
+
+## Round 1
+
+### Post 1
+| Persona | Score | Notes |
+|---|---|---|
+| Target Reader | X/10 | [reason only if score < 8, otherwise blank] |
+| Hook Editor | X/10 | |
+| Spike Voice | X/10 | |
+| Copy Editor | X/10 | |
+| Engagement | X/10 | |
+| **Average** | **X.X/10** | |
+
+### Post 2
+[same format]
+
+...
+
+**Round average: X.X/10 — PASS / FAIL**
+
+Top issues:
+- [top issue 1]
+- [top issue 2]
+- [top issue 3]
+
+---
+
+## Round 2 *(if applicable)*
+
+Posts rewritten: Post 1 (substantive — hook rewrite), Post 3 (mechanical — banned word removed)
+
+### Post 1
+[same score table format]
+
+...
+
+**Round average: X.X/10 — PASS / FAIL**
+
+---
+
+## Result
+
+[One of:]
+- Passed in Round 1. N posts written to Notion.
+- Passed in Round 2. N posts written to Notion.
+- Did not pass after 2 rounds. Paused for user input.
+```
+
+**Rules for the log:**
+- Only include Notes for scores below 8 — leave the cell blank for passing scores
+- Capture rewrite classifications (mechanical / substantive) when Round 2 exists
+- Keep the Result line short and factual
+- If the guide was skipped (empty content), do not write a log
 
 ---
 
