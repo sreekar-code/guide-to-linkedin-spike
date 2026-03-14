@@ -48,7 +48,14 @@ Avoid descriptive hooks that observe a situation ("Defining severity levels is w
 
 PURPOSE
 
-Each post should extract one sharp idea from the guide. Go deeper on that one idea rather than broader. The reader should learn something real and specific, even if they never click the link. Extract as many posts as the guide genuinely supports. Stop when there are no more sharp ideas worth a standalone post.
+Each post should extract one sharp idea from the guide. Go deeper on that one idea rather than broader. The reader should learn something real and specific, even if they never click the link.
+
+Be selective. Not every idea in a guide deserves a post. Before writing one, ask three questions:
+- Is there a counterintuitive or surprising angle — not just "here's how X works" but a genuine tension or reframe?
+- Can the body go at least two layers deep on this specific point?
+- Will the reader finish with something they couldn't have predicted from the first sentence?
+
+If an idea doesn't pass all three, skip it. A guide that yields two strong posts is better than one that yields four weak ones. Stop when there are no more ideas worth a standalone post — do not pad with ideas that are merely informative.
 
 ---
 
@@ -68,7 +75,7 @@ POST STRUCTURE
 Every post needs: a hook, a body with genuine depth, a closing line that sticks, and a P.S.
 
 - Hook: A counter-intuitive or thought-provoking opening line that earns the next sentence
-- Body: Expand on the one idea with genuine depth. A post that only states an insight is too thin — the reader needs to understand why it works, not just that it works. The body should go at least two layers deep. Anticipate the reader's follow-up question after the hook and answer it. The reader should finish with a richer understanding than they could have predicted from the first sentence alone.
+- Body: Expand on the one idea with genuine depth. Early in the body, build a scene — put the reader inside the situation before naming the insight. Make it specific and concrete: a person, a moment, a decision. Let the insight emerge from the scene rather than being stated analytically. The reader should feel like they watched something happen and then understood why. The body should go at least two layers deep. Sentences should chain — each one handing off to the next, not standing alone. The reader should finish with a richer understanding than they could have predicted from the first sentence alone.
 - Closing statement: A single line that sticks
 - P.S.: A CTA linking to the full guide. Format: "P.S. We wrote a guide on [topic]. [guide URL]"
 Note: Some posts may not need a CTA. Use your judgment.
@@ -90,6 +97,11 @@ TONE AND WRITING STYLE
 - Warm, confident, and conversational. Feels like someone genuinely sharing something they figured out
 - Write as if Spike's team is talking directly to a fellow engineer or engineering manager
 - Plain language. Short sentences mixed with longer ones. Avoid standalone sentences of 3 words or fewer — fragments read as choppy and unfinished
+- Simple words throughout. If a simpler word carries the same meaning, always use it. No complex vocabulary, no technical jargon unless the post is specifically about that term
+- Short paragraphs. One to three sentences each. Start a new paragraph for every new thought. Do not bundle multiple ideas into one paragraph
+- Write for flow. Each paragraph should take the reader one step deeper into the idea. The post should feel like a progression — every paragraph answers the question the previous one raised, or reveals the next layer of the same insight. A reader should feel like they are digging deeper, not being presented with a list of observations
+- Use connective tissue between sentences. Words and phrases like "over time", "then", "that's when", "which means", "and then another" carry the reader forward. Sentences should pull each other along, not stand independently
+- Show, don't analyze. Describe what someone is experiencing, not the structure of the problem. "A low-priority incident comes in. It can probably wait until this PR is done. Then another comes in." is stronger than "Two competing priorities create a workload conflict."
 - Avoid sounding like content marketing. The post should feel educational first
 - Use "incident" not "alert"
 - Use "incident triggers" not "incident happens" or "incident occurs"
@@ -136,6 +148,10 @@ Avoid posts that:
 - Read like a blog post summary rather than a human sharing an insight
 - Are technically correct but say nothing memorable
 - End with "What do you think?" or "Drop a comment below"
+- Have long paragraphs that bundle multiple ideas together
+- Use complex vocabulary when a plain word would work
+- Feel like a list of points rather than a progression — the reader should feel they are going deeper, not sideways
+- Describe situations analytically from the outside ("Two competing priorities create a workload conflict") instead of putting the reader inside the experience ("A low-priority incident comes in. It can probably wait until this PR is done. Then another comes in.")
 
 ---
 
