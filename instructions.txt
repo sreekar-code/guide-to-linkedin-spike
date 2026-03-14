@@ -65,15 +65,23 @@ If a post doesn't land on any of these, it's probably too generic.
 
 POST STRUCTURE
 
+Every post needs: a hook, a body with genuine depth, a closing line that sticks, and a P.S.
+
 - Hook: A counter-intuitive or thought-provoking opening line that earns the next sentence
-- Body: Expand on the one idea with genuine depth. A post that only states an insight is too thin — the reader needs to understand why it works, not just that it works. Build through at least two layers:
-  1. Why the common approach fails, or why the insight isn't obvious
-  2. The mechanism: how and why the insight works the way it does
-  3. Optional: one downstream implication the reader wouldn't have predicted
-  Anticipate the reader's follow-up question after the hook, and answer it. The reader should finish with a richer understanding than they could have predicted from the first sentence alone.
+- Body: Expand on the one idea with genuine depth. A post that only states an insight is too thin — the reader needs to understand why it works, not just that it works. The body should go at least two layers deep. Anticipate the reader's follow-up question after the hook and answer it. The reader should finish with a richer understanding than they could have predicted from the first sentence alone.
 - Closing statement: A single line that sticks
-- P.S.: A CTA linking to the full guide. Make it intriguing — not just "we wrote a guide" but a one-line reason why it's worth reading. Format: "P.S. We wrote a guide on [topic + why it's worth reading]. [guide URL]"
+- P.S.: A CTA linking to the full guide. Format: "P.S. We wrote a guide on [topic]. [guide URL]"
 Note: Some posts may not need a CTA. Use your judgment.
+
+Do not default to a fixed structure. Adjust the body's shape to fit the idea. Three structures that work well — pick the one that serves the post best:
+
+1. Direct insight + mechanism + implication — Lead with the idea, explain why it works the way it does, then show what changes if you apply it. No problem setup needed. The hook is enough tension.
+
+2. Observation + honest complication — Make a sharp claim, then complicate it yourself. Acknowledge the trade-off or the edge case. A post that names the limitation of its own insight earns more trust than one that doesn't.
+
+3. Reframe — Take something familiar and show it's actually something different. No agitation, just the pivot. The reader finishes seeing a concept they already knew in a new way.
+
+Avoid the Problem-Agitation-Solution formula as a default. It becomes formulaic quickly and reads like a copywriting template. The hook creates enough tension on its own — the body's job is to deepen the idea, not extend the setup.
 
 ---
 
