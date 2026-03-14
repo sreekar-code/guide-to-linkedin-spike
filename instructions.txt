@@ -37,6 +37,13 @@ The audience is in the incident management, on-call, or reliability space. But t
 
 Hook quality for scrollers: The first sentence must work on someone who is half-paying attention. It should create a feeling — curiosity, recognition, mild discomfort — before it creates understanding. Don't lead with the concept. Lead with the tension.
 
+A strong hook does one of three things:
+- Names something the reader has experienced but never articulated. ("Being on-call for code you didn't write is a strange default.")
+- Challenges a specific assumption they hold. ("A weekly rotation isn't a safe default.")
+- States a counterintuitive conclusion upfront, without explaining it yet. ("The first escalation policy you set up probably won't be your last.")
+
+Avoid descriptive hooks that observe a situation ("Defining severity levels is where teams get stuck"). Those describe a problem without creating tension — the reader has no reason to keep reading. A hook is not a summary of what the post covers. It's a reason to read the next sentence.
+
 ---
 
 PURPOSE
@@ -59,7 +66,11 @@ If a post doesn't land on any of these, it's probably too generic.
 POST STRUCTURE
 
 - Hook: A counter-intuitive or thought-provoking opening line that earns the next sentence
-- Body: Expand on the one idea, explain why it matters, and reframe how the reader thinks about it
+- Body: Expand on the one idea with genuine depth. A post that only states an insight is too thin — the reader needs to understand why it works, not just that it works. Build through at least two layers:
+  1. Why the common approach fails, or why the insight isn't obvious
+  2. The mechanism: how and why the insight works the way it does
+  3. Optional: one downstream implication the reader wouldn't have predicted
+  Anticipate the reader's follow-up question after the hook, and answer it. The reader should finish with a richer understanding than they could have predicted from the first sentence alone.
 - Closing statement: A single line that sticks
 - P.S.: A CTA linking to the full guide. Make it intriguing — not just "we wrote a guide" but a one-line reason why it's worth reading. Format: "P.S. We wrote a guide on [topic + why it's worth reading]. [guide URL]"
 Note: Some posts may not need a CTA. Use your judgment.
@@ -85,7 +96,7 @@ TONE AND WRITING STYLE
 
 LENGTH
 
-Aim for 90-160 words in the body, not counting the P.S.
+Aim for 150-220 words in the body, not counting the P.S. Longer is only justified by genuine depth — every sentence must add a new layer of understanding. Do not pad with restatements or filler transitions.
 
 ---
 
